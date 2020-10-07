@@ -18,9 +18,6 @@ mod tests {
         style: String,
     }
 
-    fn shoe_in_my_size(shoes: Vec<Shoe>, shoe_size: u32) -> Vec<Shoe> {
-        shoes.into_iter().filter(|s| s.size == shoe_size).collect()
-    }
     #[test]
 
     fn filter_by_size() {
@@ -39,7 +36,7 @@ mod tests {
             },
         ];
 
-        let in_my_size = shoe_in_my_size(shoes, 10);
+        let in_my_size: Vec<Shoe> = shoes.into_iter().filter(|s| s.size == 10).collect();
         assert_eq!(
             in_my_size,
             vec![
@@ -53,6 +50,15 @@ mod tests {
                 },
             ]
         );
+    }
+
+    #[test]
+    fn map() {
+        let v1: Vec<i32> = vec![1, 2, 3];
+
+        let v2: Vec<_> = v1.iter().map(|x| x + 1).collect();
+
+        assert_eq!(v2, vec![2, 3, 4]);
     }
 
     struct Counter {
